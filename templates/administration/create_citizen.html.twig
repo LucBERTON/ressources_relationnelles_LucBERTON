@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création de Citoyen{% endblock %}
+
+{% block body %}
+    <h1>Création de Citoyen</h1>
+
+    {{ include('administration/_form.html.twig') }}
+
+    <a href="{{ path('app_ressource_index') }}">Retour à l'accueil</a>
+{% endblock %}

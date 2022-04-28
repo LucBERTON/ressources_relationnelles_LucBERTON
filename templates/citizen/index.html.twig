@@ -1,0 +1,258 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citizen index
+{% endblock %}
+
+{% block body %}
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790 ">
+        <div class="card card-5">
+		    <div class="d-flex flex-row bd-highlight">
+				<div class="p-2 w-100 bd-highlight">
+                    <h1 class="display-1 text-start"> 
+                        <strong class="text-primary"><i>#Citizen </strong> Index </i>
+                    </h1>
+                </div>
+
+				 <div class="p-2 flex-shrink-1 bd-highlight">
+                    <a role"button" class="btn btn-success p-2 m-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Ajouter Ressources" href="{{path('app_citizen_new') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+							<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+							<path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+						</svg>
+                        <strong> Ajouter</strong>
+                    </a>
+                </div>  
+            </div>  
+      
+			<!-- Main -->
+			{% for citizen in citizens %}
+            <div class="card-header">
+                <div class="table-responsive-sm ">
+					<table class="table table-sm table-striped table-bordered border-light">					
+ 						<tbody  class="card-body">
+                                        <tr>
+                                            <th>Email</th>
+                                            <td>{{ citizen.email }}</td>
+                                        </tr>
+                                            <tr>
+                                            <th>Roles</th>
+                                            <td>{% for role in citizen.roles %}
+												{{role}}
+												{% endfor %}
+											</td>
+                                        </tr>
+                                
+                                        <tr>
+                                            <th>Nom</th>
+                                            <td>{{ citizen.firstName}}
+													<br>
+												{{citizen.lastName |nl2br  }}
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adresse</th>
+                                            <td>{{ citizen.streetNumber }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Etat du compte</th>
+                                            <td>{% if citizen.status  %}
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-emoji-smile-fill text-success" viewBox="0 0 16 16">
+  														<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zM4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8z"/>
+													</svg>
+												{% else %}
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-emoji-frown text-danger" viewBox="0 0 16 16">
+														<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+														<path d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+													</svg>
+												{% endif %}
+											</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Actions</th>
+                                            <td class="d-flex flex-row-reverse bd-highlight">
+												{# DETAIL #}
+												<div class="d-flex  justify-content-end">    
+													<div class="p-2  bd-highlight flex-fill">
+														<a role"button" class="btn btn-info text-white btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Détail" type="button" href="{{ path('app_citizen_show', {'id': citizen.id}) }}">
+															<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+																<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+																<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+															</svg>                                
+														</a> 
+													</div>
+											
+											{# <a href="{{ path('app_citizen_show', {'id': citizen.id}) }}">Afficher</a> #}
+												{# MODIFIER #}
+												<div class="p-2 bd-highlight flex-fill">
+													<a role"button"  class="btn btn-warning text-white btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier" type="button" href="{{ path('app_citizen_edit', {'id': citizen.id}) }}"> 
+														<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+															<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+															<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+														</svg>
+													</a>
+												</div>
+
+
+												{# <br><a href="{{ path('app_citizen_edit', {'id': citizen.id}) }}">Modifier</a> #}
+
+
+												<div class="p-2 bd-highlight flex-fill">
+												{% if citizen.status  %}
+												{# <br><a href="{{ path('app_citizen_deactivate', {'id': citizen.id}) }}">Désactiver</a> #}
+													<a role"button"  class="btn btn-success text-white btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Desactiver" type="button" href="{{ path('app_citizen_deactivate', {'id': citizen.id}) }}"> 
+
+														<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+														<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+														<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+														</svg>
+													</a>
+													{% else %}
+
+														{# <br><a href="{{ path('app_citizen_activate', {'id': citizen.id}) }}">Activer</a> #}
+													<a role"button"  class="btn btn-secondary text-white btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Activer" type="button" href="{{ path('app_citizen_activate', {'id': citizen.id}) }}"> 
+														<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16">
+															<path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+														</svg>
+													</a>
+												
+													{% endif %}
+												</div>
+
+												
+													
+												
+
+
+												{% if is_granted(constant('App\\Entity\\Citizen::ROLE_SUPERADMIN')) %}
+													{% if 'ROLE_MODERATOR' not in citizen.roles %}
+														<br><a href="{{ path('app_citizen_moderator', {'id': citizen.id}) }}">Changer en MODERATEUR</a>
+													{% endif %}
+													{% if 'ROLE_ADMIN' not in citizen.roles %}
+														<br><a href="{{ path('app_citizen_admin', {'id': citizen.id}) }}">Changer en ADMIN</a>
+													{% endif %}
+													{% if 'ROLE_SUPERADMIN' not in citizen.roles %}
+														<br><a href="{{ path('app_citizen_superadmin', {'id': citizen.id}) }}">Changer en SUPER ADMIN</a>
+													{% endif %}
+												{% endif %}
+											</td>
+                                        </tr>
+                                       
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="12">no records found</td>
+                                            </tr>
+                                        <br/>                                                  
+                                        
+                                    </tbody>
+                     </table>
+                </div>
+                        
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+
+    </div>
+
+
+ 
+{# 
+	 <table class="table">
+		<thead>
+			<tr>
+				<th>Email</th>
+				<th>Roles</th>
+				<th>Nom</th>
+				<th>Adresse</th>
+				<th>Etat du compte</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody> #}
+			{# {% for citizen in citizens %} #}
+				{# <tbody  class="card-body">
+				<tr>
+					
+						<th>Email</th>
+							<td>{{ citizen.email }}</td> #}
+						
+					
+					
+{# 				
+						<th>Roles</th>
+						{% for role in citizen.roles %}
+						
+									<td>{{role}}	</td><br>
+						
+						{% endfor %}
+				 #}
+					
+					{# <td>
+						<th>Nom
+							{{ citizen.firstName}}
+								<br>
+							{{citizen.lastName |nl2br  }}
+						</th>
+					</td> #}
+
+					{# <td>
+						<th>Adresse
+							{{ citizen.streetNumber }}
+								{{ citizen.streetName }}
+								<br>
+								{{ citizen.postalCode }}
+								{{ citizen.city }}
+								-
+								{{ citizen.country|upper }}
+						</th>
+					</td> #}
+
+					{# <td>
+						<th>Etat du compte
+							{% if citizen.status  %}
+								Actif
+							{% else %}
+								Désactivé
+							{% endif %}
+						</th>
+					</td> #}
+
+					{# <td>
+						<th>Actions
+							<a href="{{ path('app_citizen_show', {'id': citizen.id}) }}">Afficher</a>
+							<br><a href="{{ path('app_citizen_edit', {'id': citizen.id}) }}">Modifier</a>
+
+							{% if citizen.status  %}
+								<br><a href="{{ path('app_citizen_deactivate', {'id': citizen.id}) }}">Désactiver</a>
+							{% else %}
+								<br><a href="{{ path('app_citizen_activate', {'id': citizen.id}) }}">Activer</a>
+							{% endif %}
+
+
+							{% if is_granted(constant('App\\Entity\\Citizen::ROLE_SUPERADMIN')) %}
+								{% if 'ROLE_MODERATOR' not in citizen.roles %}
+									<br><a href="{{ path('app_citizen_moderator', {'id': citizen.id}) }}">Changer en MODERATEUR</a>
+								{% endif %}
+								{% if 'ROLE_ADMIN' not in citizen.roles %}
+									<br><a href="{{ path('app_citizen_admin', {'id': citizen.id}) }}">Changer en ADMIN</a>
+								{% endif %}
+								{% if 'ROLE_SUPERADMIN' not in citizen.roles %}
+									<br><a href="{{ path('app_citizen_superadmin', {'id': citizen.id}) }}">Changer en SUPER ADMIN</a>
+								{% endif %}
+							{% endif %}
+						</th>
+					</td>
+				</tr> #}
+				{# {% else %}
+				<tr>
+					<td colspan="12">no records found</td>
+				</tr> #}
+				{# {% endfor %}
+			</tbody>
+	
+  </div>  
+    </div>  
+
+	{# <a href="{{ path('app_citizen_new') }}">Create new</a> #}
+{% endblock %} 

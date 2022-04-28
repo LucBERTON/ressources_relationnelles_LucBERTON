@@ -1,0 +1,262 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ressource index
+	{% endblock %}
+
+{% block body %}
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790 ">
+        <div class="card card-5">
+
+
+                {# <div class="row d-flex justify-content-between align-items-center"> #}
+                <div class="d-flex flex-row bd-highlight">
+                    {# <div class="col-auto order-first m-3">                   #}
+                        <div class="p-2 w-100 bd-highlight">
+                            <h1 class="display-1 text-start">
+                                <strong class="text-primary">
+                                    {# <svg xmlns="http://www.w3.org/2000/svg"  width="18" height="18" fill="currentColor" class="bi bi-newspaper text-info" viewBox="0 0 16 16">
+                                        <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z"/>
+                                        <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z"/>
+                                    </svg> #}
+                                    <i> #Ressources
+                                </strong>
+                                        Index
+                                            </i>
+                            </h1>
+                        </div>
+
+                        <div class="p-2 flex-shrink-1 bd-highlight">
+                            <a role"button" class="btn btn-success p-2 m-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Ajouter Ressources" href="{{ path('app_ressource_new') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+                                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"/>
+                                </svg>
+                                <strong> Ajouter</strong>
+                            </a>
+                        </div>
+
+
+
+                    </div>
+
+                    {# <div class="col-auto order-last ms-2"> #}
+
+
+
+
+
+
+                    <!-- Main -->
+                        {% for ressource in ressources %}
+                         <div class="card-header">
+                            <div class="table-responsive-sm ">
+                            {# <h1>{{ ressource.title }}</h1>   #}
+                                <table class="table table-sm table-striped table-bordered border-light">
+                                    {# <thead>                                          #}
+                                            {# <div class="d-flex text-white d-grid gap-2 col mx-auto" >
+                                                                    <a role"button" class="btn btn-info text-white btn-sm" type="button" href="{{ path('app_ressource_show', {'id': ressource.id}) }}">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                                        </svg>  
+                                                                        <strong> Show </strong>
+                                                                    </a>
+
+                                                                    <a role"button"  class="btn btn-warning text-white btn-sm" type="button" href="{{ path('app_ressource_edit', {'id': ressource.id}) }}"> 
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                                                        </svg>
+                                                                        <strong> Edit </strong> 
+                                                                    </a>
+                                            </div> #}
+                                        <div class="d-flex flex-row bd-highlight">
+                                                <div class="p-2 bd-highlight flex-fill">
+                                                <h2 class="titre"> <span class="text-primary">  #{{ ressource.id }}</span> <i> {{ ressource.title }}</i> </h2>
+                                                </div>
+                                                {# <button class="btn btn-primary" type="button"> #}
+                                            <div class="d-flex justify-content-end">
+                                                <div class="p-2  bd-highlight flex-fill">
+                                                <a role"button" class="btn btn-info text-white btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Détail" type="button" href="{{ path('app_ressource_show', {'id': ressource.id}) }}">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                                            </svg>
+
+                                                                        </a>
+
+
+
+                                                {# </button> #}
+                                                </div>
+                                                {# <button class="btn btn-primary" type="button"> #}
+                                                <div class="p-2 bd-highlight flex-fill">
+                                                <a role"button"  class="btn btn-warning text-white btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier" type="button" href="{{ path('app_ressource_edit', {'id': ressource.id}) }}">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                                                            </svg>
+
+                                                                        </a>
+                                                {# </button> #}
+                                                </div>
+</div>
+                                        </div>
+                                    {# </thead> #}
+                                    <tbody  class="card-body">
+                                        <tr>
+                                            <th>Id</th>
+                                            <td>{{ ressource.id }}</td>
+                                        </tr>
+                                            <tr>
+                                            <th>Title</th>
+                                            <td>{{ ressource.title }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Author</th>
+                                            <td>{{ ressource.Author }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Content</th>
+                                            <td>{{ ressource.content }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Url</th>
+                                            <td>{{ ressource.url }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Views</th>
+                                            <td>{{ ressource.views }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Searches</th>
+                                            <td>{{ ressource.searches }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Shares</th>
+                                            <td>{{ ressource.shares }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>SubmitDate</th>
+                                            <td>{{ ressource.submitDate ? ressource.submitDate|date('Y-m-d H:i:s') : '' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status</th>
+                                            <td>{{ ressource.status ? 'Yes' : 'No' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>ModerationStatus</th>
+                                            <td>{{ ressource.moderationStatus ? 'Yes' : 'No' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>ModerationDate</th>
+                                            <td>{{ ressource.moderationDate ? ressource.moderationDate|date('Y-m-d H:i:s') : '' }}</td>
+                                        </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="12">no records found</td>
+                                            </tr>
+                                        <br/>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+{#
+                            <table class="table table-bordered" >
+                                        <thead class="table-primary text-center">
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Title</th>
+                                                <th>Author</th>
+                                                <th>Content</th>
+                                                <th>Url</th>
+                                                <th>Views</th>
+                                                <th>Searches</th>
+                                                <th>Shares</th>
+                                                <th>SubmitDate</th>
+                                                <th>Status</th>
+                                                <th>ModerationStatus</th>
+                                                <th>ModerationDate</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for ressource in ressources %}
+                                                <tr>
+                                                    <td>{{ ressource.id }}</td>
+                                                    <td>{{ ressource.title }}</td>
+                                                    <td>{{ ressource.Author }}</td>
+                                                    <td>{{ ressource.content }}</td>
+                                                    <td>{{ ressource.url }}</td>
+                                                    <td>{{ ressource.views }}</td>
+                                                    <td>{{ ressource.searches }}</td>
+                                                    <td>{{ ressource.shares }}</td>
+                                                    <td>{{ ressource.submitDate ? ressource.submitDate|date('Y-m-d H:i:s') : '' }}</td>
+                                                    <td>{{ ressource.status ? 'Yes' : 'No' }}</td>
+                                                    <td>{{ ressource.moderationStatus ? 'Yes' : 'No' }}</td>
+                                                    <td>{{ ressource.moderationDate ? ressource.moderationDate|date('Y-m-d H:i:s') : '' }}</td>
+                                                    <td>
+                                                    <div class="d-flex text-white d-grid gap-2 col mx-auto" >
+                                                            <a role"button" class="btn btn-info text-white btn-sm" type="button" href="{{ path('app_ressource_show', {'id': ressource.id}) }}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                                                </svg>
+                                                                <strong> Show </strong>
+                                                            </a>
+
+                                                            <a role"button"  class="btn btn-warning text-white btn-sm" type="button" href="{{ path('app_ressource_edit', {'id': ressource.id}) }}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                                                </svg>
+                                                                <strong> Edit </strong>
+                                                            </a>
+                                                            </div>
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="12">no records found</td>
+                                                </tr>
+                                                    <br/>
+                                            {% endfor %}
+                                      </tbody>
+                            </table> #}
+
+
+
+
+    <script>
+        function addToFavorite(dataId){
+            fetch(`/ressource/addtofavorite/${dataId}`,)
+        }
+
+
+       favoriteBtns = document.querySelectorAll("[data-class='favorite_btn']")
+        for (let favoriteBtn of favoriteBtns){
+           let dataId = favoriteBtn.getAttribute('data-id')
+            favoriteBtn.addEventListener('click',function() {
+                addToFavorite(dataId)
+                favoriteBtn.style = 'color: red'
+            })
+        }
+
+
+    </script>
+
+{% endblock %}
